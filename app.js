@@ -88,16 +88,18 @@ app.get('/count',function(req,res){
  passport.serializeUser(function(user, done) {
    console.log('serializeUser', user);
    done(null, user.authId);
- });
+  });
  passport.deserializeUser(function(id, done) {
    console.log('deserializeUser', id);
-   for(var i=0; i<users.length; i++){
-     var user = users[i];
-     if(user.authId === id){
-       return done(null, user);
+   var sql = 'SELECT *FROM users WHERE authId=?'
+   conn.query(sql,[id],function(err,results){
+     if(err){
+       console.log(err);
+       done('There is no user.');
+     } else{
+       done(null,results[0]);
      }
-   }
-   done('There is no user.');
+    });
  });
  passport.use(new LocalStrategy(
    function(username, password, done){
@@ -105,49 +107,55 @@ app.get('/count',function(req,res){
      var pwd = password;
      var sql = 'SELECT * FROM users WHERE authId=?';
      conn.query(sql, ['local:'+uname],function(err,results){
-       console.log(results);
        if(err){
         return done('there is no user.') ;
-       }
+      }
+      var user = results[0];
+
+       return hasher({password:pwd, salt:user.salt}, function(err, pass, salt, hash){
+         if(hash === user.password){
+           console.log('LocalStrategy', user);
+           done(null, user);
+         } else {
+           done(null, false);
+         }
+       });
      });
-    //  for(var i=0; i<users.length; i++){
-    //    var user = users[i];
-    //    if(uname === user.username) {
-    //      return hasher({password:pwd, salt:user.salt}, function(err, pass, salt, hash){
-    //        if(hash === user.password){
-    //          console.log('LocalStrategy', user);
-    //          done(null, user);
-    //        } else {
-    //          done(null, false);
-    //        }
-    //      });
-    //    }
-    //  }
-    //  done(null, false);
    }
  ));
  passport.use(new FacebookStrategy({
-     clientID: '1602353993419626',
-     clientSecret: '232bc1d3aca2199e6a27eb983e602e0b',
+   //페이스북 앱 id
+     clientID: '232351407194812',
+     //페이스북 시크릿 코드
+     clientSecret: '40105fddb9e58ceb81d196e7a35c33bf',
      callbackURL: "/auth/facebook/callback",
      profileFields:['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'displayName']
    },
    function(accessToken, refreshToken, profile, done) {
      console.log(profile);
      var authId = 'facebook:'+profile.id;
-     for(var i=0; i<users.length; i++){
-       var user = users[i];
-       if(user.authId === authId){
-         return done(null, user);
+     var sql = 'SELECT * FROM users WHERE authId=?';
+     conn.query(sql,[authId],function(err,results){
+       if(results.length>0){
+         done(null, results[0]);
+       } else{
+         var newuser = {
+           'authId':authId,
+           'displayName':profile.displayName,
+           'email':profile.emails[0].value
+         };
+
+         var sql = 'INSERT INTO users SET ?'
+         conn.query(sql, newuser, function(err, results){
+           if(err){
+             console.log(err);
+             done('Error');
+           } else{
+             done(null, newuser);
+           }
+         })
        }
-     }
-     var newuser = {
-       'authId':authId,
-       'displayName':profile.displayName,
-       'email':profile.emails[0].value
-     };
-     users.push(newuser);
-     done(null, newuser);
+     });
    }
  ));
  app.post(
@@ -178,15 +186,6 @@ app.get('/count',function(req,res){
      }
    )
  );
- var users = [
-   {
-     authId:'local:egoing',
-     username:'egoing',
-     password:'mTi+/qIi9s5ZFRPDxJLY8yAhlLnWTgYZNXfXlQ32e1u/hZePhlq41NkRfffEV+T92TGTlfxEitFZ98QhzofzFHLneWMWiEekxHD1qMrTH1CWY01NbngaAfgfveJPRivhLxLD1iJajwGmYAXhr69VrN2CWkVD+aS1wKbZd94bcaE=',
-     salt:'O0iC9xqMBUVl3BdO50+JWkpvVcA5g2VNaYTR5Hc45g+/iXy4PzcCI7GJN5h5r3aLxIhgMN8HSh0DhyqwAp8lLw==',
-     displayName:'Egoing'
-   }
- ];
  app.post('/auth/register', function(req, res){
    hasher({password:req.body.password}, function(err, pass, salt, hash){
      var user = {
@@ -202,16 +201,14 @@ app.get('/count',function(req,res){
        if(err){
          console.log(err);
          res.status(500);
-       } else{
-         res.redirect('/welcome');
+       } else {
+         req.login(user, function(err){
+           req.session.save(function(){
+             res.redirect('/welcome');
+           });
+         });
        }
      });
-
-    //  req.login(user, function(err){
-    //    req.session.save(function(){
-    //      res.redirect('/welcome');
-    //    });
-    //  });
    });
  });
  app.get('/auth/register', function(req, res){
