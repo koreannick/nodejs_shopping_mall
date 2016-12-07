@@ -65,6 +65,13 @@ module.exports = function(passport){
     res.render('auth/login');
   });
 
+  //
+  // //부트스트랩 사용
+  // route.get('/index',function(req,res){
+  //   res.render('auth/index');
+  // });
+
+
   route.get('/logout', function(req, res){
      req.logout();
      req.session.save(function(){
