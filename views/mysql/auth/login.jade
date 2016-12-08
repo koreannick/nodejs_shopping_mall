@@ -1,11 +1,19 @@
 extends ../../layout
 block content
-  h1 Login
-  form(action='/auth/login', method='post')
-    p
-      input(type='text', name='username', placeholder='username')
-    p
-      input(type='password', name='password', placeholder='password')
-    p
-      input(type='submit')
-  a(href='/auth/facebook') facebook
+  div(style='padding:100px 10px 10px 100px;')
+    h1
+      b Login
+    form(action='/auth/login', method='post')
+      p
+      .form-group(style='width:250px')
+        label.control-label(for='Input ID')
+          b ID
+        input.form-control(name='username', placeholder='username', type='text', size='100')
+      p
+      .form-group(style='width:250px')
+        label.control-label(for='Input Password') Password
+        input.form-control(type='password', name='password', placeholder='password')
+      td
+        input.btn.btn-primary.btn-lg(type='submit', value='Login')
+      td
+        a.btn.btn-primary.btn-lg(style='margin:0px 0px 0px 10px;', href='/auth/facebook') Facebook Login

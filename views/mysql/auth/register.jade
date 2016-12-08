@@ -1,12 +1,27 @@
 extends ../../layout
 block content
-  h1 Register
-  form(action='/auth/register', method='post')
-    p
-      input(type='text', name='username', placeholder='username')
-    p
-      input(type='password', name='password', placeholder='password')
-    p
-      input(type='text', name='displayName', placeholder='displayName')
-    p
-      input(type='submit')
+  form.form-horizontal
+    fieldset
+      legend Register
+      .form-group(style='width:500px')
+        label.col-lg-2.control-label(for='inputID') ID
+        .col-lg-10
+          input.form-control(type='text', name='username', placeholder='아이디')
+      .form-group(style='width:500px')
+        label.col-lg-2.control-label(for='inputName') Name
+        .col-lg-10
+          input.form-control(type='text', name='displayName', placeholder='이름')
+      .form-group(style='width:500px')
+        label.col-lg-2.control-label(for='inputPassword') Password
+        .col-lg-10
+          input.form-control(type='password', name='password', placeholder='비밀번호')
+      .form-group(style='width:500px')
+        label.col-lg-2.control-label(for='inputEmail') Email
+        .col-lg-10
+          input.form-control(type='text',name='email', placeholder='Email')
+      .form-group(style='width:500px')
+        .col-lg-10.col-lg-offset-2
+          td
+            input.btn.btn-primary.btn-lg(type='submit', value='회원가입')
+          td
+            a.btn.btn-primary.btn-lg(style='margin:0px 0px 0px 10px;', href='/auth/facebook') Facebook Login

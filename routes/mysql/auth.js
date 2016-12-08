@@ -40,12 +40,14 @@ module.exports = function(passport){
         username:req.body.username,
         password:hash,
         salt:salt,
-        displayName:req.body.displayName
+        displayName:req.body.displayName,
+        email:req.body.email
       };
       //mysql 등록
       var sql = 'INSERT INTO users SET ?';
       conn.query(sql, user, function(err, results){
         if(err){
+          console.log("ddddd");
           console.log(err);
           res.status(500);
         } else {

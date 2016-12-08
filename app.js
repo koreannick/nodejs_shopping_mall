@@ -9,7 +9,6 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var app = require('./config/mysql/express')();
 var passport = require('./config/mysql/passport')(app);
-
 var auth = require('./routes/mysql/auth')(passport);
 app.use('/auth/',auth);
 
@@ -22,7 +21,6 @@ app.use(logger('dev'));
 
 app.use('/', index);
 app.use('/users', users);
-
  app.get('/welcome', function(req, res){
    if(req.user && req.user.displayName) {
      res.send(`
