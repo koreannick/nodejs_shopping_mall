@@ -7,13 +7,16 @@ block content
       p
       .form-group(style='width:250px')
         label.control-label(for='Input ID')
-          b ID
+          h3
+            b ID
         input.form-control(name='username', placeholder='username', type='text', size='100')
       p
       .form-group(style='width:250px')
-        label.control-label(for='Input Password') Password
+        label.control-label(for='Input Password')
+          h3
+            b  Password
         input.form-control(type='password', name='password', placeholder='password')
       td
         input.btn.btn-primary.btn-lg(type='submit', value='Login')
       td
-        a.btn.btn-primary.btn-lg(style='aligin:center', href='/auth/facebook') Facebook Login
+        a.btn.btn-primary.btn-lg(style='margin:0px 0px 0px 10px;', href='/auth/facebook') Facebook Login

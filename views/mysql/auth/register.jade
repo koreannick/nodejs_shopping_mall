@@ -1,27 +1,38 @@
 extends ../../layout
 block content
-  form.form-horizontal(action='/auth/register', method='post')
-    fieldset
-      legend Register
-      .form-group(style='width:500px')
-        label.col-lg-2.control-label(for='inputID') ID
-        .col-lg-10
-          input.form-control(type='text', name='username', placeholder='id')
-      .form-group(style='width:500px')
-        label.col-lg-2.control-label(for='inputName') Name
-        .col-lg-10
-          input.form-control(type='text', name='displayName', placeholder='name')
-      .form-group(style='width:500px')
-        label.col-lg-2.control-label(for='inputPassword') Password
-        .col-lg-10
-          input.form-control(type='password', name='password', placeholder='password')
-      .form-group(style='width:500px')
-        label.col-lg-2.control-label(for='inputEmail') Email
-        .col-lg-10
-          input.form-control(type='text',name='email', placeholder='email')
-      .form-group(style='width:500px')
-        .col-lg-10.col-lg-offset-2
-          td
-            input.btn.btn-primary.btn-lg(type='submit', value='회원가입')
-          td
-            a.btn.btn-primary.btn-lg(style='margin:0px 0px 0px 10px;', href='/auth/facebook') Facebook Login
+  div(style='padding:100px 10px 10px 100px;')
+    form.form-horizontal
+      fieldset
+        legend
+          h1
+            b Register
+        .form-group(style='width:500px')
+          label.col-lg-2.control-label(for='inputID')
+            h3
+              b ID
+          .col-lg-10
+            input.form-control(type='text', name='username', placeholder='id')
+        .form-group(style='width:500px')
+          label.col-lg-2.control-label(for='inputName')
+            h3
+              b Name
+          .col-lg-10
+            input.form-control(type='text', name='displayName', placeholder='name')
+        .form-group(style='width:500px')
+          label.col-lg-2.control-label(for='inputPassword')
+            h3
+              b Password
+          .col-lg-10
+            input.form-control(type='password', name='password', placeholder='password')
+        .form-group(style='width:500px')
+          label.col-lg-2.control-label(for='inputEmail')
+            h3
+              b Email
+          .col-lg-10
+            input.form-control(type='text',name='email', placeholder='Email')
+        .form-group(style='width:500px')
+          .col-lg-10.col-lg-offset-2
+            td
+              input.btn.btn-primary.btn-lg(type='submit', value='회원가입')
+            td
+              a.btn.btn-primary.btn-lg(style='margin:0px 0px 0px 10px;', href='/auth/facebook') Facebook Login

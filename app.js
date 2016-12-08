@@ -6,19 +6,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 
 var index = require('./routes/index');
+var views = require('./routes/views');
 var users = require('./routes/users');
+
 var app = require('./config/mysql/express')();
 var passport = require('./config/mysql/passport')(app);
 var auth = require('./routes/mysql/auth')(passport);
 app.use('/auth/',auth);
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 //app.use(bodyParser.json());
 
-
-
+app.use('/views',views);
 app.use('/', index);
 app.use('/users', users);
 
