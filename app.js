@@ -7,6 +7,7 @@ var cookieParser = require('cookie-parser');
 var path = require('path');
 var index = require('./routes/index');
 var views = require('./routes/views');
+var products = require('./routes/products');
 var users = require('./routes/users');
 
 var app = require('./config/mysql/express')();
@@ -20,6 +21,7 @@ app.use(logger('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/views',views);
+app.use('/products',products);
 app.use('/', index);
 app.use('/users', users);
 
