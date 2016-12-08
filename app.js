@@ -1,10 +1,10 @@
 //기본 생성되는 모듈
-
+var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-
+var path = require('path');
 var index = require('./routes/index');
 var views = require('./routes/views');
 var users = require('./routes/users');
@@ -18,10 +18,10 @@ app.use('/auth/',auth);
 app.use(logger('dev'));
 //app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/views',views);
 app.use('/', index);
 app.use('/users', users);
-
 
  app.get('/welcome', function(req, res){
    if(req.user && req.user.displayName) {

@@ -13,6 +13,7 @@ module.exports = function(){
   app.set('views', './views/mysql');
   app.set('view engine', 'jade');
   app.use(bodyParser.urlencoded({ extended: false }));
+
   //세션 사용
   app.use(session({
     secret: '40105fddb9e58ceb81d196e7a35c33bf',

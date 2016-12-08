@@ -9,34 +9,35 @@ html
     // 부트스트랩
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
   body
-    header
-      nav.navbar.navbar-inverse.navbar-fixed-top.navbar-transparent
-        .container-fluid
-          .navbar-header
-            a.navbar-brand(href='/')
-              b HOME
-            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-          #navbar-main.collapse.navbar-collapse
-            ul.nav.navbar-nav.navbar-right
-              li
-                a(href='/auth/login')
-                  b LOGIN
-              li
-                a(href='/auth/register')
-                  b JOINUS
-              li
-                a(href='/views/cart')
-                  b CART
-              li
-                a(href='/views/order')
-                  b ORDER
+    .row
+      header
+        nav.navbar.navbar-inverse.navbar-fixed-top.navbar-transparent
+          .container-fluid
+            .navbar-header
+              a.navbar-brand(href='/')
+                b HOME
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+            #navbar-main.collapse.navbar-collapse
+              ul.nav.navbar-nav.navbar-right
+                li
+                  a(href='/auth/login')
+                    b LOGIN
+                li
+                  a(href='/auth/register')
+                    b JOINUS
+                li
+                  a(href='/views/cart')
+                    b CART
+                li
+                  a(href='/views/order')
+                    b ORDER
     .row
       nav.col-md-2
         ul#logo.nav.nav-stacked.text-left
-          img(width='200px', src='images/eunmall.png')
+          img(width='200px', src='/images/eunmall.png')
           li.active
             p.lead
               font(color='#828282', size='4')
