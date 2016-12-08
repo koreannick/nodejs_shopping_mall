@@ -10,13 +10,16 @@ html
     link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
   body
     header
-      nav.navbar.navbar-inverse
+      nav.navbar.navbar-inverse.navbar-fixed-top.navbar-transparent
         .container-fluid
-          #bs-example-navbar-collapse-1.collapse.navbar-collapse
-            ul.nav.navbar-nav.navbar-left
-              li
-                a(href='/')
-                  b HOME
+          .navbar-header
+            a.navbar-brand(href='/')
+              b HOME
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-main')
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+          #navbar-main.collapse.navbar-collapse
             ul.nav.navbar-nav.navbar-right
               li
                 a(href='/auth/login')
@@ -28,7 +31,7 @@ html
                 a(href='/auth/cart')
                   b CART
               li
-                a(href='/auth/order')
+                a(href='./order')
                   b ORDER
     .row
       nav.col-md-2
@@ -70,9 +73,7 @@ html
             p.lead
               font(color='#828282', size='4')
                 b  ㅡ
-                
       .col-md-10
-        block content
     // /container
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
     // 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요

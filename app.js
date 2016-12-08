@@ -21,6 +21,8 @@ app.use(logger('dev'));
 
 app.use('/', index);
 app.use('/users', users);
+
+
  app.get('/welcome', function(req, res){
    if(req.user && req.user.displayName) {
      res.send(`

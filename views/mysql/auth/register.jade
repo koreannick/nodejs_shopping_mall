@@ -1,6 +1,6 @@
 extends ../../layout
 block content
-  form.form-horizontal
+  form.form-horizontal(action='/auth/register', method='post')
     fieldset
       legend Register
       .form-group(style='width:500px')
@@ -18,7 +18,7 @@ block content
       .form-group(style='width:500px')
         label.col-lg-2.control-label(for='inputEmail') Email
         .col-lg-10
-          input.form-control(type='text',name='email', placeholder='Email')
+          input.form-control(type='text',name='email', placeholder='email')
       .form-group(style='width:500px')
         .col-lg-10.col-lg-offset-2
           td
