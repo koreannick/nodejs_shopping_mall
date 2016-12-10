@@ -1,0 +1,79 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='../public/stylesheets/style.css')
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title
+    // 부트스트랩
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+  body
+    div(style="height:100px; background-image:url('https://source.unsplash.com/1920x1080');")
+      h1.page-title(style='text-align: center; justify-content: center; align-items: center;')
+        font(color='#FFFFFF', size='40')
+          | ADD PRODUCTS
+    div(style='padding:100px 10px 10px 100px;')
+      form.form-horizontal(action='/auth/register', method='post')
+        fieldset
+          legend
+            h1
+              b 상품 기본 정보
+          .form-group(style='width:500px')
+            label.col-lg-3.control-label 상품이름
+            .col-lg-9
+              input.form-control(type='text', name='product_name', placeholder='product_name')
+          .form-group(style='width:500px')
+            label.col-lg-3.control-label 상품코드
+            .col-lg-9
+              input.form-control(type='text', name='product_code', placeholder='product_code')
+          .form-group(style='width:500px')
+            label.col-lg-3.control-label 상품가격
+            .col-lg-9
+              input.form-control(type='text', name='product_price', placeholder='product_price')
+          .form-group(style='width:500px')
+            label.col-lg-3.control-label 원산지
+            .col-lg-9
+              input.line(type='text', name='product_from',placeholder='product_from', value='')
+              select(onchange='this.form.product_from.value=this.value;this.form.product_from.focus()')
+                option(value='') ::: 목록보기 :::
+                option(value='경기도') 대한민국
+                option(value='대한민국') 미국
+                option(value='한국') 일본
+                option(value='중국') 중국
+          .form-group(style='width:500px')
+            label.col-lg-3.control-label 브랜드
+            .col-lg-9
+              input.line(type='text', name='product_brand',placeholder='product_brand', value='')
+              select(onchange='this.form.product_brand.value=this.value;this.form.product_brand.focus()')
+                option(value='') ::: 브랜드 선택 :::
+                option(value='삼성') 삼성
+                option(value='APPLE') APPLE
+                option(value='LG') LG
+          .form-group(style='width:500px')
+            label.col-lg-3.control-label 출시일
+            .col-lg-9
+              input.form-control(type='text', name='product_birthday', placeholder='product_birthday')
+          .form-group(style='width:500px')
+            label.col-lg-3.control-label 상품이미지
+            .col-lg-9
+            input(type='hidden', name='orgNames_img_i', value='')
+            table#tb_i
+              colgroup
+                col(valign='top', span='2')
+              tbody
+                tr
+                  td
+                    font(color='white') .........
+                    span
+                      input(type='file', name='img_i[]0', style='width:300px')
+          .form-group(style='width:500px')
+            .title
+              | 상품 설명 
+              textarea.tline(name='memo', style='width:100%;height:500px')
+          .form-group(style='width:500px')
+            div(style='center-block')
+              input.btn.btn-primary.btn-lg(type='submit')
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
+    <!-- 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요-->
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')

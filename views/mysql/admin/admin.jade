@@ -8,18 +8,10 @@ head
   // 부트스트랩
   link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
   body(style='margin:0;', onload="document.getElementsByName('m_id')[0].focus()", bgcolor='#edefed')
-    form(name='frm1')
-      input(type='hidden', name='returnUrl', value='../admin/index.jsp')
-      .login_wrap
-        .logo_box
-          img(width='250px', src='/images/eunmall.png')
-        .login_box
-        .form-group(style='width:250px')
-          input(type='text', name='m_id', required='', label='아이디', onfocus='', onblur='', value='admin', placeholder='아이디')
-        .form-group(style='width:250px')
-          input(type='password', name='password', required='', label='비밀번호', value='1234', onfocus='LogininFocus(this)', onblur='LoginoutFocus(this)', placeholder='비밀번호')
-        .form-group(style='width:250px')
-          input.btn.btn-primary.btn-lg(type='submit', value='로그인')
+    div(style='padding:200px 200px 200px 200px;') 
+        img(width='500px', src='/images/eunmall.png')
+        a.btn.btn-primary.btn-lg(href='/admin/management')
+          b 관리하기
           // /container
   script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
           // 모든 컴파일된 플러그인을 포함합니다 (아래), 원하지 않는다면 필요한 각각의 파일을 포함하세요

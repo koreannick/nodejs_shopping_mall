@@ -8,7 +8,7 @@ var path = require('path');
 var index = require('./routes/index');
 var views = require('./routes/views');
 var products = require('./routes/products');
-var admin = require('./routes/admin');
+var admin = require('./routes/admin')();
 
 var app = require('./config/mysql/express')();
 var passport = require('./config/mysql/passport')(app);
