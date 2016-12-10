@@ -9,6 +9,7 @@ var index = require('./routes/index');
 var views = require('./routes/views');
 var products = require('./routes/products');
 var users = require('./routes/users');
+var admin = require('./routes/admin');
 
 var app = require('./config/mysql/express')();
 var passport = require('./config/mysql/passport')(app);
@@ -24,6 +25,7 @@ app.use('/views',views);
 app.use('/products',products);
 app.use('/', index);
 app.use('/users', users);
+app.use('/admin',admin);
 
  app.get('/welcome', function(req, res){
    if(req.user && req.user.displayName) {

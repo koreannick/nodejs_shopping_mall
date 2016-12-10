@@ -10,7 +10,7 @@ module.exports = function(passport){
     passport.authenticate(
       'local',
       {
-        successRedirect: '/',
+        successRedirect: '/welcome',
         failureRedirect: '/auth/login',
         failureFlash: false
       }
@@ -28,7 +28,7 @@ module.exports = function(passport){
     passport.authenticate(
       'facebook',
       {
-        successRedirect: '/',
+        successRedirect: '/welcome',
         failureRedirect: '/auth/login'
       }
     )
@@ -40,8 +40,7 @@ module.exports = function(passport){
         username:req.body.username,
         password:hash,
         salt:salt,
-        displayName:req.body.displayName,
-        email:req.body.email
+        displayName:req.body.displayName
       };
       //mysql 등록
       var sql = 'INSERT INTO users SET ?';
@@ -53,7 +52,7 @@ module.exports = function(passport){
         } else {
           req.login(user, function(err){
             req.session.save(function(){
-              res.redirect('/index');
+              res.redirect('/welcome');
             });
           });
         }
