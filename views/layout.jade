@@ -22,17 +22,21 @@ html
                 span.icon-bar
             #navbar-main.collapse.navbar-collapse
               ul.nav.navbar-nav.navbar-right
-                if(user)
-                  li
-                    a(href='/auth/logout')
-                      b logout
-                else
+                if(user==0)
                   li
                     a(href='/auth/login')
                       b LOGIN
                   li
                     a(href='/auth/register')
                       b JOINUS
+                else
+                  li
+                    a()
+                      b [ HELLO, #{user} ]
+                  li
+                    a(href='/auth/logout')
+                      b logout
+                  
                 li
                   a(href='/views/cart')
                     b CART

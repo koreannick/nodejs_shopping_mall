@@ -50,6 +50,7 @@ module.exports = function(passport){
           res.status(500);
         } else {
           req.login(user, function(err){
+            req.session.dsplayName = user.displayName;
             req.session.save(function(){
               res.redirect('/');
             });
@@ -59,13 +60,24 @@ module.exports = function(passport){
     });
   });
   route.get('/register', function(req, res){
-    res.render('auth/register');
+    if(req.user && req.user.displayName){
+  res.render('auth/register', { title: 'Express',user: req.user.displayName });
+}
+else{
+  res.render('auth/register',{title: 'Express',user:0 });
+}
   });
   route.get('/login', function(req, res){
-    res.render('auth/login');
+    if(req.user && req.user.displayName){
+  res.render('auth/login', { title: 'Express',user: req.user.displayName });
+}
+else{
+  res.render('auth/login',{title: 'Express',user:0 });
+}
   });
   route.get('/logout', function(req, res){
      req.logout();
+     req.session.delete;
      req.session.save(function(){
        res.redirect('/');
      });

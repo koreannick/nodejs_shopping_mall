@@ -16,17 +16,18 @@ module.exports = function(){
 
   //세션 사용
   app.use(session({
-    secret: '4196e7a35c33bf',
-    resave: false,
-    saveUninitialized: true,
-    stroe: new MySQLStore({
-      host: '210.125.112.115',
-      port: 3006,
-      user:'pi',
-      password:'fpahsk3238',
-      database:'o2'
-    })
-  }));
+     secret: '1234DSFs@adf1234!@#$asd',
+     resave: false,
+     saveUninitialized: true,
+     store:new MySQLStore({
+       host:'210.125.112.115',
+       port:3006,
+       user:'pi',
+       password:'fpahsk3238',
+       database:'o2'
+     })
+   }));
+
 
   return app;
 }

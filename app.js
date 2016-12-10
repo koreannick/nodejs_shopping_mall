@@ -8,7 +8,6 @@ var path = require('path');
 var index = require('./routes/index');
 var views = require('./routes/views');
 var products = require('./routes/products');
-var users = require('./routes/users');
 var admin = require('./routes/admin');
 
 var app = require('./config/mysql/express')();
@@ -24,25 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/views',views);
 app.use('/products',products);
 app.use('/', index);
-app.use('/users', users);
 app.use('/admin',admin);
- //
- // app.get('/welcome', function(req, res){
- //   if(req.user && req.user.displayName) {
- //     res.send(`
- //       <h1>Hello, ${req.user.displayName}</h1>
- //       <a href="/auth/logout">logout</a>
- //     `);
- //   } else {
- //     res.send(`
- //       <h1>Welcome</h1>
- //       <ul>
- //         <li><a href="/auth/login">Login</a></li>
- //         <li><a href="/auth/register">Register</a></li>
- //       </ul>
- //     `);
- //   }
- // });
 
 app.listen(3003, function(){
   console.log('http://localhost:3003');
