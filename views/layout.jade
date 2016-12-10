@@ -35,7 +35,7 @@ html
                       b [ HELLO, #{user} ]
                   li
                     a(href='/auth/logout')
-                      b logout
+                      b LOGOUT
                   
                 li
                   a(href='/views/cart')
@@ -44,7 +44,7 @@ html
                   a(href='/views/order')
                     b ORDER
     .row(style='padding:50px 0px 0px 0px;')
-      nav.col-md-2
+      nav.col-md-3
         ul#logo.nav.nav-stacked.text-left
           img(width='250px', src='/images/eunmall.png')
           li.active
@@ -83,7 +83,7 @@ html
             p.lead
               font(color='#828282', size='4')
                 b  ㅡ
-      nav.col-md-10
+      nav.col-md-9
         .center-block
           block content
     // /container
@@ -96,4 +96,4 @@ html
       font(color='#828282', size='4')
         b  진행상황 
     .progress.progress-striped.active
-      .progress-bar(style='width: 40%')
+      .progress-bar(style='width: 60%')
