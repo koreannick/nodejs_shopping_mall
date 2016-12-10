@@ -10,7 +10,7 @@ module.exports = function(passport){
     passport.authenticate(
       'local',
       {
-        successRedirect: '/welcome',
+        successRedirect: '/',
         failureRedirect: '/auth/login',
         failureFlash: false
       }
@@ -28,11 +28,12 @@ module.exports = function(passport){
     passport.authenticate(
       'facebook',
       {
-        successRedirect: '/welcome',
+        successRedirect: '/',
         failureRedirect: '/auth/login'
       }
     )
   );
+
   route.post('/register', function(req, res){
     hasher({password:req.body.password}, function(err, pass, salt, hash){
       var user = {
@@ -42,17 +43,15 @@ module.exports = function(passport){
         salt:salt,
         displayName:req.body.displayName
       };
-      //mysql 등록
       var sql = 'INSERT INTO users SET ?';
       conn.query(sql, user, function(err, results){
         if(err){
-          console.log("ddddd");
           console.log(err);
           res.status(500);
         } else {
           req.login(user, function(err){
             req.session.save(function(){
-              res.redirect('/welcome');
+              res.redirect('/');
             });
           });
         }
@@ -65,14 +64,6 @@ module.exports = function(passport){
   route.get('/login', function(req, res){
     res.render('auth/login');
   });
-
-  //
-  // //부트스트랩 사용
-  // route.get('/index',function(req,res){
-  //   res.render('auth/index');
-  // });
-
-
   route.get('/logout', function(req, res){
      req.logout();
      req.session.save(function(){

@@ -1,7 +1,7 @@
 extends ../../layout
 block content
   div(style='padding:100px 10px 10px 100px;')
-    form.form-horizontal
+    form.form-horizontal(action='/auth/register', method='post')
       fieldset
         legend
           h1
@@ -9,18 +9,18 @@ block content
         .form-group(style='width:500px')
           label.col-lg-2.control-label(for='inputID') ID
           .col-lg-10
-            input.form-control(type='text', name='username', placeholder='id')
+            input.form-control(type='text', name='username', placeholder='username')
         .form-group(style='width:500px')
           label.col-lg-2.control-label(for='inputName') Name
           .col-lg-10
-            input.form-control(type='text', name='displayName', placeholder='name')
+            input.form-control(type='password', name='password', placeholder='password')
         .form-group(style='width:500px')
           label.col-lg-2.control-label(for='inputPassword') Password
           .col-lg-10
-            input.form-control(type='password', name='password', placeholder='password')
+            input.form-control(type='text', name='displayName', placeholder='displayName')
         .form-group(style='width:500px')
           .col-lg-10.col-lg-offset-2
             td
-              input.btn.btn-primary.btn-lg(type='submit', value='회원가입')
+              input.btn.btn-primary.btn-lg(type='submit')
             td
               a.btn.btn-primary.btn-lg(style='margin:0px 0px 0px 10px;', href='/auth/facebook') Facebook Login

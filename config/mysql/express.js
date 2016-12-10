@@ -16,7 +16,7 @@ module.exports = function(){
 
   //세션 사용
   app.use(session({
-    secret: '40105fddb9e58ceb81d196e7a35c33bf',
+    secret: '4196e7a35c33bf',
     resave: false,
     saveUninitialized: true,
     stroe: new MySQLStore({
