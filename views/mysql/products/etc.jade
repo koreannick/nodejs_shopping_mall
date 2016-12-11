@@ -1,2 +1,22 @@
 extends ../../layout
 block content
+  p
+    h1
+      font(color='#828282')
+        b ETC
+  p
+    table
+      each product in products
+        .col-md-4
+          a(href='')
+            div(align='center', width='300px',style='margin:10px 40px 10px 40px;')
+              p.active
+                img(width='300px',height="250px" ,src='../uploads/'+product.product_savefilename)
+              p.active
+                font(color='#828282', size='6')
+                    b= product.product_name
+              p.active
+                font(color='#828282', size='4')
+                    b 가격 : 
+                    b= product.product_price
+                    b  원

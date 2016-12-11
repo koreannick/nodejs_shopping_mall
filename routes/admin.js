@@ -50,7 +50,7 @@ module.exports = function(){
           res.status(500);
         } else {
           console.log('good');
-          res.render('/admin', { title: 'Express' });
+          res.redirect('/admin/management');
           }
         });
       });

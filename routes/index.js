@@ -5,7 +5,7 @@ var conn = require('../config/mysql/db')();
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  var sql = 'SELECT id,product_name,product_price,product_savefilename FROM products';
+  var sql = 'SELECT id,product_name,product_price,product_savefilename,product_from FROM products';
 
   conn.query(sql,function(err,rows,fields){
     if(err){

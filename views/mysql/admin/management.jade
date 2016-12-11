@@ -32,15 +32,15 @@ html
             .col-lg-9
               input.form-control(type='text', name='product_price', placeholder='product_price')
           .form-group(style='width:500px')
-            label.col-lg-3.control-label 원산지
+            label.col-lg-3.control-label 상품구분
             .col-lg-9
-              input.line(type='text', name='product_from',placeholder='product_from', value='')
+              input.line(type='text', name='product_from',placeholder='product_from',value='NEW')
               select(onchange='this.form.product_from.value=this.value;this.form.product_from.focus()')
-                option(value='') ::: 목록보기 :::
-                option(value='대한민국') 대한민국
-                option(value='미국') 미국
-                option(value='일본') 일본
-                option(value='중국') 중국
+                option(value='NEW') NEW
+                option(value='BESTSELLER') BESTSELLER
+                option(value='SALE') SALE
+                option(value='SPECIAL') SPECIAL
+                option(value='ETC') ETC
           .form-group(style='width:500px')
             label.col-lg-3.control-label 브랜드
             .col-lg-9
