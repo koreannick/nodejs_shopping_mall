@@ -1,10 +1,27 @@
 extends ../layout
 block content
   .jumbotron
-    h1
-      b 　　EunYeong
-    p
-      h1 　　MALL
-    p
-      h1 　　
-        a.btn.btn-primary.btn-lg 더보기
+    div(align='center')
+      h1
+        b 　　EunYeong
+      p
+        h1 　　MALL
+      p
+        h1 　　
+          a.btn.btn-primary.btn-lg(href='/admin') AdminPage 접속하기
+  p
+    table
+      each product in products
+        .col-md-4
+          a(href='')
+            div(align='center', width='300px',style='margin:10px 40px 10px 40px;')
+              p.active
+                img(width='300px',height="250px" ,src='uploads/'+product.product_savefilename)
+              p.active
+                font(color='#828282', size='6')
+                    b= product.product_name
+              p.active
+                font(color='#828282', size='4')
+                    b 가격 : 
+                    b= product.product_price
+                    b  원

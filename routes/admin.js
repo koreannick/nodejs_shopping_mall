@@ -4,12 +4,15 @@ module.exports = function(){
   var fs = require('fs');             //모듈 불러오기file system
   var async =require('async');    //모듈 불러오기
   var multer = require('multer');
+  var orgname;
+  var savename;
   var _storage = multer.diskStorage({
     destination: function(req,file,cb){
       cb(null,'uploads/');
     },
     filename: function(req,file,cb){
-      cb(null,file.originalname);
+      cb(null,savename=(file.fieldname+Date.now()+'.jpg'));
+      orgname=file.originalname;
     }
   })
   var upload = multer({ storage: _storage })
@@ -18,6 +21,8 @@ module.exports = function(){
 
   admin.post('/management',upload.single('product_image') ,function(req, res){
 
+
+
     var products ={
       product_name:req.body.product_name,
       product_code:req.body.product_code,
@@ -25,6 +30,8 @@ module.exports = function(){
       product_from:req.body.product_from,
       product_brand:req.body.product_brand,
       product_birthday:req.body.product_birthday,
+      product_orgfilename:orgname,
+      product_savefilename:savename,
       product_define:req.body.product_define
     }
       conn.query(("SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8' "),
@@ -43,7 +50,7 @@ module.exports = function(){
           res.status(500);
         } else {
           console.log('good');
-          res.render('admin/management', { title: 'Express' });
+          res.render('/admin', { title: 'Express' });
           }
         });
       });

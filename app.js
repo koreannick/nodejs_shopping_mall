@@ -19,7 +19,7 @@ app.use('/auth/',auth);
 app.use(logger('dev'));
 //app.use(bodyParser.json());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname)));
 app.use('/views',views);
 app.use('/products',products);
 app.use('/', index);
