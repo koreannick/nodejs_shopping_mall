@@ -14,7 +14,7 @@ html
         font(color='#FFFFFF', size='40')
           | ADD PRODUCTS
     div(style='padding:100px 10px 10px 100px;')
-      form.form-horizontal(action='/auth/register', method='post')
+      form.form-horizontal(action='/admin/management', method='post')
         fieldset
           legend
             h1
@@ -37,9 +37,9 @@ html
               input.line(type='text', name='product_from',placeholder='product_from', value='')
               select(onchange='this.form.product_from.value=this.value;this.form.product_from.focus()')
                 option(value='') ::: 목록보기 :::
-                option(value='경기도') 대한민국
-                option(value='대한민국') 미국
-                option(value='한국') 일본
+                option(value='대한민국') 대한민국
+                option(value='미국') 미국
+                option(value='일본') 일본
                 option(value='중국') 중국
           .form-group(style='width:500px')
             label.col-lg-3.control-label 브랜드
@@ -66,11 +66,11 @@ html
                   td
                     font(color='white') .........
                     span
-                      input(type='file', name='img_i[]0', style='width:300px')
+                      input(type='file', name='product_image', style='width:300px')
           .form-group(style='width:500px')
             .title
               | 상품 설명 
-              textarea.tline(name='memo', style='width:100%;height:500px')
+              input(type='text', name='product_define', style='width:100%;height:500px')
           .form-group(style='width:500px')
             div(style='center-block')
               input.btn.btn-primary.btn-lg(type='submit')

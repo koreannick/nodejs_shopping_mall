@@ -9,6 +9,5 @@ module.exports = function(){
     database : 'o2'
   });
   conn.connect();
-
   return conn;
 }

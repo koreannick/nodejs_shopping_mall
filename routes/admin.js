@@ -15,6 +15,15 @@ module.exports = function(){
       product_image:req.body.product_image,
       product_define:req.body.product_define
     }
+      conn.query(("SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8' "),
+      products, function(err, results){
+        if(err){
+          console.log(err);
+          res.status(500);
+        } else {
+          condole.log('good');
+          }
+        });
       var sql = 'INSERT INTO products SET ?';
       conn.query(sql, products, function(err, results){
         if(err){
@@ -22,6 +31,7 @@ module.exports = function(){
           res.status(500);
         } else {
           condole.log('good');
+          res.render('admin/management', { title: 'Express' });
           }
         });
       });
