@@ -2,6 +2,23 @@ var express = require('express');
 var router = express.Router();
 var conn = require('../config/mysql/db')();
 
+
+router.get('/carts',function(req,res){
+var cart={
+  id:req.body.id,
+  authId:req.user.authId
+};
+var sql = 'INSERT INTO carts SET ?';
+conn.query(sql,cart,function(err,results){
+  if(err){
+    console.log(err);
+    res.status(500);
+  } else{
+    res.redirect('/');
+  }
+})
+
+});
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
