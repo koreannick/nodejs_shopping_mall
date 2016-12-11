@@ -1,10 +1,23 @@
 module.exports = function(){
   var conn = require('../config/mysql/db')();
   var express = require('express');
+  var fs = require('fs');             //모듈 불러오기file system
+  var async =require('async');    //모듈 불러오기
+  var multer = require('multer');
+  var _storage = multer.diskStorage({
+    destination: function(req,file,cb){
+      cb(null,'uploads/');
+    },
+    filename: function(req,file,cb){
+      cb(null,file.originalname);
+    }
+  })
+  var upload = multer({ storage: _storage })
   var admin = express.Router();
 
 
-  admin.post('/management', function(req, res){
+  admin.post('/management',upload.single('product_image') ,function(req, res){
+
     var products ={
       product_name:req.body.product_name,
       product_code:req.body.product_code,
@@ -12,7 +25,6 @@ module.exports = function(){
       product_from:req.body.product_from,
       product_brand:req.body.product_brand,
       product_birthday:req.body.product_birthday,
-      product_image:req.body.product_image,
       product_define:req.body.product_define
     }
       conn.query(("SET character_set_results = 'utf8', character_set_client = 'utf8', character_set_connection = 'utf8', character_set_database = 'utf8', character_set_server = 'utf8' "),
@@ -21,7 +33,7 @@ module.exports = function(){
           console.log(err);
           res.status(500);
         } else {
-          condole.log('good');
+          console.log('good');
           }
         });
       var sql = 'INSERT INTO products SET ?';
@@ -30,7 +42,7 @@ module.exports = function(){
           console.log(err);
           res.status(500);
         } else {
-          condole.log('good');
+          console.log('good');
           res.render('admin/management', { title: 'Express' });
           }
         });

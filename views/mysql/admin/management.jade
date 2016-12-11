@@ -14,7 +14,7 @@ html
         font(color='#FFFFFF', size='40')
           | ADD PRODUCTS
     div(style='padding:100px 10px 10px 100px;')
-      form.form-horizontal(action='/admin/management', method='post')
+      form.form-horizontal(action='/admin/management', method='post', enctype="multipart/form-data")
         fieldset
           legend
             h1
