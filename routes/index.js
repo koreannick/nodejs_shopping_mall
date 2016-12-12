@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var conn = require('../config/mysql/db')();
-
+var app = express();
+//app.use(cookieParser());
 
 router.get('/carts',function(req,res){
 var cart={
-  id:req.body.id,
-  authId:req.user.authId
+  authId:req.user.authId,
+  id:req.body.id
+
 };
 var sql = 'INSERT INTO carts SET ?';
 conn.query(sql,cart,function(err,results){

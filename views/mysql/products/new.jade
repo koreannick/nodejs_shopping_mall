@@ -20,3 +20,6 @@ block content
                     b 가격 : 
                     b= product.product_price
                     b  원
+              p.active
+                a.label.label-default(href='/carts',name='id',value=product.id) 카트
+                a.label.label-default(style='margin:0px 0px 0px 10px;', href='',action='/orders', method='post') 주문하기
